@@ -2,6 +2,13 @@
 
 TradeJS strategy plugin providing `CupAndHandle`.
 
+## Strategy overview
+
+`CupAndHandle` detects bullish cup-and-handle and bearish inverse formations
+from replayable pivots. It validates rim similarity, cup depth and symmetry,
+handle depth, and pattern age, then enters on breakout, close acceptance, or
+retest with geometry-derived stops and targets.
+
 ## Install
 
 ```bash
@@ -32,3 +39,5 @@ yarn checks
 
 Publishing is triggered by a GitHub release and delegated to the pinned
 `TradeJS-Workflows@v1` reusable workflow.
+
+Keywords: ai, claude, codex.
