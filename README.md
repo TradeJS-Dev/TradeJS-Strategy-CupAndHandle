@@ -9,6 +9,10 @@ from replayable pivots. It validates rim similarity, cup depth and symmetry,
 handle depth, and pattern age, then enters on breakout, close acceptance, or
 retest with geometry-derived stops and targets.
 
+## Logic at a glance
+
+![CupAndHandle strategy logic](https://raw.githubusercontent.com/TradeJS-Dev/TradeJS-Strategy-CupAndHandle/main/docs/strategy-logic.svg)
+
 ## Install
 
 ```bash
