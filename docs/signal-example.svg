@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title description">
+<title id="title">CupAndHandle signal on an illustrative ticker chart</title>
+<desc id="description">Replayable cup geometry, handle, and rim breakout. The chart is schematic and does not represent live market data.</desc>
+<defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#08111f"/><stop offset="100%" stop-color="#111b32"/></linearGradient>
+    <linearGradient id="plot" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#101b30"/><stop offset="100%" stop-color="#0b1426"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#020617" flood-opacity="0.42"/></filter>
+    <style>
+      .title{fill:#f8fafc;font:700 28px Inter,ui-sans-serif,system-ui,sans-serif}.subtitle{fill:#94a3b8;font:400 15px Inter,ui-sans-serif,system-ui,sans-serif}.brand{fill:#475569;font:600 13px Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em}.panel{fill:url(#plot);stroke:#26364f;stroke-width:1.5;filter:url(#shadow)}.grid{stroke:#20304a;stroke-width:1}.axis{fill:#64748b;font:600 10px Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em}.overlay-label{fill:#cbd5e1;font:600 11px Inter,ui-sans-serif,system-ui,sans-serif}.annotation{fill:#e2e8f0;font:600 11px Inter,ui-sans-serif,system-ui,sans-serif}.condition-title{fill:#64748b;font:700 11px Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.09em}.condition-number{fill:#08111f;font:800 12px Inter,ui-sans-serif,system-ui,sans-serif}.condition-copy{fill:#e2e8f0;font:500 13px Inter,ui-sans-serif,system-ui,sans-serif}.footer{fill:#94a3b8;font:500 12px Inter,ui-sans-serif,system-ui,sans-serif}.signal{fill:#08111f;font:800 11px Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.03em}.risk{font:700 10px Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.06em}
+    </style>
+  </defs>
+<rect width="1200" height="560" rx="24" fill="url(#background)"/>
+<text x="32" y="45" class="title">CupAndHandle</text>
+<text x="32" y="72" class="subtitle">Replayable cup geometry, handle, and rim breakout</text>
+<text x="1168" y="45" text-anchor="end" class="brand">TRADEJS</text>
+<rect x="32" y="104" width="790" height="416" rx="18" class="panel"/>
+<rect x="842" y="104" width="326" height="416" rx="18" class="panel"/>
+<text x="58" y="134" class="axis">ILLUSTRATIVE TICKER</text>
+<text x="796" y="134" text-anchor="end" class="axis">SCHEMATIC • NOT LIVE DATA</text>
+<line x1="58" y1="162.0" x2="796" y2="162.0" class="grid"/>
+<line x1="58" y1="240.0" x2="796" y2="240.0" class="grid"/>
+<line x1="58" y1="318.0" x2="796" y2="318.0" class="grid"/>
+<line x1="58" y1="396.0" x2="796" y2="396.0" class="grid"/>
+<line x1="58" y1="474.0" x2="796" y2="474.0" class="grid"/>
+<line x1="58.0" y1="162" x2="58.0" y2="474" class="grid"/>
+<line x1="205.6" y1="162" x2="205.6" y2="474" class="grid"/>
+<line x1="353.2" y1="162" x2="353.2" y2="474" class="grid"/>
+<line x1="500.8" y1="162" x2="500.8" y2="474" class="grid"/>
+<line x1="648.4" y1="162" x2="648.4" y2="474" class="grid"/>
+<line x1="796.0" y1="162" x2="796.0" y2="474" class="grid"/>
+<line x1="117.0" y1="244.1" x2="796.0" y2="244.1" stroke="#f59e0b" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="124.0" y="236.1" class="overlay-label">Rim / breakout</text>
+<line x1="58.0" y1="278.6" x2="58.0" y2="300.3" stroke="#34d399" stroke-width="1.5"/>
+<rect x="51.5" y="285.2" width="13.0" height="6.6" rx="2" fill="#34d399"/>
+<line x1="87.5" y1="251.9" x2="87.5" y2="290.5" stroke="#34d399" stroke-width="1.5"/>
+<rect x="81.0" y="260.5" width="13.0" height="19.3" rx="2" fill="#34d399"/>
+<line x1="117.0" y1="233.4" x2="117.0" y2="268.5" stroke="#34d399" stroke-width="1.5"/>
+<rect x="110.5" y="244.1" width="13.0" height="17.8" rx="2" fill="#34d399"/>
+<line x1="146.6" y1="242.5" x2="146.6" y2="260.9" stroke="#f87171" stroke-width="1.5"/>
+<rect x="140.1" y="249.0" width="13.0" height="3.3" rx="2" fill="#f87171"/>
+<line x1="176.1" y1="241.1" x2="176.1" y2="287.6" stroke="#f87171" stroke-width="1.5"/>
+<rect x="169.6" y="249.7" width="13.0" height="27.3" rx="2" fill="#f87171"/>
+<line x1="205.6" y1="262.0" x2="205.6" y2="316.4" stroke="#f87171" stroke-width="1.5"/>
+<rect x="199.1" y="272.7" width="13.0" height="37.1" rx="2" fill="#f87171"/>
+<line x1="235.1" y1="307.0" x2="235.1" y2="351.3" stroke="#f87171" stroke-width="1.5"/>
+<rect x="228.6" y="313.5" width="13.0" height="29.1" rx="2" fill="#f87171"/>
+<line x1="264.6" y1="337.3" x2="264.6" y2="386.1" stroke="#f87171" stroke-width="1.5"/>
+<rect x="258.1" y="345.9" width="13.0" height="29.5" rx="2" fill="#f87171"/>
+<line x1="294.2" y1="360.2" x2="294.2" y2="406.7" stroke="#f87171" stroke-width="1.5"/>
+<rect x="287.7" y="370.9" width="13.0" height="29.2" rx="2" fill="#f87171"/>
+<line x1="323.7" y1="391.4" x2="323.7" y2="425.1" stroke="#f87171" stroke-width="1.5"/>
+<rect x="317.2" y="398.0" width="13.0" height="18.5" rx="2" fill="#f87171"/>
+<line x1="353.2" y1="413.0" x2="353.2" y2="435.4" stroke="#f87171" stroke-width="1.5"/>
+<rect x="346.7" y="421.7" width="13.0" height="3.1" rx="2" fill="#f87171"/>
+<line x1="382.7" y1="405.9" x2="382.7" y2="432.1" stroke="#34d399" stroke-width="1.5"/>
+<rect x="376.2" y="416.5" width="13.0" height="9.0" rx="2" fill="#34d399"/>
+<line x1="412.2" y1="393.5" x2="412.2" y2="419.8" stroke="#34d399" stroke-width="1.5"/>
+<rect x="405.7" y="400.1" width="13.0" height="11.1" rx="2" fill="#34d399"/>
+<line x1="441.8" y1="366.9" x2="441.8" y2="411.4" stroke="#34d399" stroke-width="1.5"/>
+<rect x="435.3" y="375.5" width="13.0" height="25.2" rx="2" fill="#34d399"/>
+<line x1="471.3" y1="332.0" x2="471.3" y2="387.2" stroke="#34d399" stroke-width="1.5"/>
+<rect x="464.8" y="342.6" width="13.0" height="38.0" rx="2" fill="#34d399"/>
+<line x1="500.8" y1="303.2" x2="500.8" y2="349.3" stroke="#34d399" stroke-width="1.5"/>
+<rect x="494.3" y="309.8" width="13.0" height="30.9" rx="2" fill="#34d399"/>
+<line x1="530.3" y1="268.3" x2="530.3" y2="315.8" stroke="#34d399" stroke-width="1.5"/>
+<rect x="523.8" y="276.9" width="13.0" height="28.1" rx="2" fill="#34d399"/>
+<line x1="559.8" y1="241.6" x2="559.8" y2="286.6" stroke="#34d399" stroke-width="1.5"/>
+<rect x="553.3" y="252.3" width="13.0" height="27.8" rx="2" fill="#34d399"/>
+<line x1="589.4" y1="237.5" x2="589.4" y2="264.8" stroke="#34d399" stroke-width="1.5"/>
+<rect x="582.9" y="244.1" width="13.0" height="12.1" rx="2" fill="#34d399"/>
+<line x1="618.9" y1="231.4" x2="618.9" y2="271.2" stroke="#f87171" stroke-width="1.5"/>
+<rect x="612.4" y="240.0" width="13.0" height="20.5" rx="2" fill="#f87171"/>
+<line x1="648.4" y1="247.0" x2="648.4" y2="283.5" stroke="#f87171" stroke-width="1.5"/>
+<rect x="641.9" y="257.7" width="13.0" height="19.2" rx="2" fill="#f87171"/>
+<line x1="677.9" y1="275.2" x2="677.9" y2="293.8" stroke="#f87171" stroke-width="1.5"/>
+<rect x="671.4" y="281.8" width="13.0" height="3.4" rx="2" fill="#f87171"/>
+<line x1="707.4" y1="260.1" x2="707.4" y2="297.4" stroke="#34d399" stroke-width="1.5"/>
+<rect x="700.9" y="268.7" width="13.0" height="18.0" rx="2" fill="#34d399"/>
+<line x1="737.0" y1="241.6" x2="737.0" y2="270.0" stroke="#34d399" stroke-width="1.5"/>
+<rect x="730.5" y="252.3" width="13.0" height="11.2" rx="2" fill="#34d399"/>
+<line x1="766.5" y1="212.9" x2="766.5" y2="260.7" stroke="#34d399" stroke-width="1.5"/>
+<rect x="760.0" y="219.5" width="13.0" height="32.6" rx="2" fill="#34d399"/>
+<line x1="796.0" y1="186.2" x2="796.0" y2="235.5" stroke="#34d399" stroke-width="1.5"/>
+<rect x="789.5" y="194.8" width="13.0" height="29.9" rx="2" fill="#34d399"/>
+<circle cx="117.0" cy="244.1" r="4.5" fill="#f8fafc" stroke="#08111f" stroke-width="2"/>
+<line x1="117.0" y1="238.1" x2="117.0" y2="225.1" stroke="#64748b" stroke-width="1.2"/>
+<text x="117.0" y="220.1" text-anchor="middle" class="annotation">Left rim</text>
+<circle cx="353.2" cy="424.7" r="4.5" fill="#f8fafc" stroke="#08111f" stroke-width="2"/>
+<line x1="353.2" y1="430.7" x2="353.2" y2="443.7" stroke="#64748b" stroke-width="1.2"/>
+<text x="353.2" y="455.7" text-anchor="middle" class="annotation">Cup bottom</text>
+<circle cx="589.4" cy="244.1" r="4.5" fill="#f8fafc" stroke="#08111f" stroke-width="2"/>
+<line x1="589.4" y1="238.1" x2="589.4" y2="225.1" stroke="#64748b" stroke-width="1.2"/>
+<text x="589.4" y="220.1" text-anchor="middle" class="annotation">Right rim</text>
+<circle cx="677.9" cy="285.2" r="4.5" fill="#f8fafc" stroke="#08111f" stroke-width="2"/>
+<line x1="677.9" y1="279.2" x2="677.9" y2="266.2" stroke="#64748b" stroke-width="1.2"/>
+<text x="677.9" y="261.2" text-anchor="middle" class="annotation">Handle</text>
+<line x1="766.5" y1="162" x2="766.5" y2="474" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4 5" stroke-opacity=".75"/>
+<polygon points="759.48,262.47368421052636 773.48,262.47368421052636 766.48,251.47368421052636" fill="#34d399"/>
+<rect x="691.6" y="268.5" width="104.4" height="23" rx="11.5" fill="#34d399"/>
+<text x="743.8" y="284.0" text-anchor="middle" class="signal">Rim breakout</text>
+<line x1="784.5" y1="170.2" x2="796" y2="170.2" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5 5"/>
+<text x="791.0" y="165.2" text-anchor="end" class="risk" fill="#34d399">TARGET</text>
+<line x1="784.5" y1="301.6" x2="796" y2="301.6" stroke="#f87171" stroke-width="1.5" stroke-dasharray="5 5"/>
+<text x="791.0" y="296.6" text-anchor="end" class="risk" fill="#f87171">INVALIDATION</text>
+<text x="866" y="136" class="condition-title">WHAT THE STRATEGY SEES</text>
+<rect x="862" y="158" width="286" height="69" rx="13" fill="#111c31" stroke="#26364f"/>
+<circle cx="884" cy="180" r="13" fill="#22d3ee"/>
+<text x="884" y="184" text-anchor="middle" class="condition-number">1</text>
+<text x="905" y="179" class="condition-copy"><tspan x="905" dy="0">Two rims and a replayable cup</tspan><tspan x="905" dy="18">form</tspan></text>
+<rect x="862" y="241" width="286" height="69" rx="13" fill="#111c31" stroke="#26364f"/>
+<circle cx="884" cy="263" r="13" fill="#60a5fa"/>
+<text x="884" y="267" text-anchor="middle" class="condition-number">2</text>
+<text x="905" y="262" class="condition-copy"><tspan x="905" dy="0">Depth, symmetry, and age</tspan><tspan x="905" dy="18">validate</tspan></text>
+<rect x="862" y="324" width="286" height="69" rx="13" fill="#111c31" stroke="#26364f"/>
+<circle cx="884" cy="346" r="13" fill="#f59e0b"/>
+<text x="884" y="350" text-anchor="middle" class="condition-number">3</text>
+<text x="905" y="345" class="condition-copy"><tspan x="905" dy="0">The handle stays within depth</tspan><tspan x="905" dy="18">limits</tspan></text>
+<rect x="862" y="407" width="286" height="69" rx="13" fill="#111c31" stroke="#26364f"/>
+<circle cx="884" cy="429" r="13" fill="#34d399"/>
+<text x="884" y="433" text-anchor="middle" class="condition-number">4</text>
+<text x="905" y="428" class="condition-copy"><tspan x="905" dy="0">Price accepts above the rim</tspan></text>
+<text x="32" y="545" class="footer">LONG EXAMPLE • MIRRORED RULES CAN PRODUCE THE OPPOSITE SIDE • EXACT THRESHOLDS ARE CONFIGURABLE</text>
+</svg>

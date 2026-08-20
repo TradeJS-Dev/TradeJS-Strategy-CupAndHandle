@@ -13,6 +13,15 @@ retest with geometry-derived stops and targets.
 
 ![CupAndHandle strategy logic](https://raw.githubusercontent.com/TradeJS-Dev/TradeJS-Strategy-CupAndHandle/main/docs/strategy-logic.svg)
 
+## Signal on an example chart
+
+The chart labels the two rims, rounded cup, bounded handle, and the rim breakout that turns the completed formation into a LONG signal.
+
+![CupAndHandle signal on an illustrative ticker chart](https://raw.githubusercontent.com/TradeJS-Dev/TradeJS-Strategy-CupAndHandle/main/docs/signal-example.svg)
+
+The illustration is schematic, not market data. Exact thresholds, confirmation
+rules, and risk parameters come from the active TradeJS strategy config.
+
 ## Install
 
 ```bash
