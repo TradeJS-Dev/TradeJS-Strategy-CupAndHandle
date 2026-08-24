@@ -1,6 +1,6 @@
 {
   "name": "@tradejs/strategy-cup-and-handle",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Cup-and-handle and inverse-pattern strategy with pivot geometry, breakout confirmation, retests, and structural risk for TradeJS.",
   "type": "module",
   "packageManager": "yarn@4.13.0",
