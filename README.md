@@ -9,6 +9,12 @@ from replayable pivots. It validates rim similarity, cup depth and symmetry,
 handle depth, and pattern age, then enters on breakout, close acceptance, or
 retest with geometry-derived stops and targets.
 
+The optional `CUPHANDLE_REQUIRE_PATH_QUALITY` guard requires both cup legs to
+progress on more than half of their comparable closes. In deterministic
+`AI_MODE: "gate"`, the strategy-local gate approves both LONG and SHORT signals
+only when the nearest resistance has at least 19 hits and the target's
+20-period beta to ETH is non-negative. Missing gate features fail closed.
+
 ## Logic at a glance
 
 ![CupAndHandle strategy logic](https://raw.githubusercontent.com/TradeJS-Dev/TradeJS-Strategy-CupAndHandle/main/docs/strategy-logic.svg)
