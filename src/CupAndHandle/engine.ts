@@ -42,6 +42,13 @@ export interface CupAndHandlePattern {
   breakoutDistanceAtr: number;
   breakoutDistanceDepthRatio: number;
   breakoutCrossedOnSignalBar: boolean;
+  leftLegProgressRatio: number;
+  rightLegProgressRatio: number;
+  leftLegRealizedRange: number;
+  rightLegRealizedRange: number;
+  handleRealizedRange: number;
+  handleRangeContracts: boolean;
+  pathQualityPassed: boolean;
   breakoutTimestamp: number;
   confirmationBars: number;
   timestamp: number;
@@ -177,6 +184,7 @@ const getConfigNumbers = (config: CupAndHandleConfig) => ({
     min: 0,
   }),
   requireBreakoutCross: Boolean(config.CUPHANDLE_REQUIRE_BREAKOUT_CROSS),
+  requirePathQuality: Boolean(config.CUPHANDLE_REQUIRE_PATH_QUALITY),
   entryMode: config.CUPHANDLE_ENTRY_MODE ?? "close_acceptance",
   confirmationMaxBars: Math.max(
     1,
@@ -254,6 +262,110 @@ const getPivotWindow = (
     candles.push(candle);
   }
   return candles;
+};
+
+interface CupAndHandlePathQuality {
+  leftLegProgressRatio: number;
+  rightLegProgressRatio: number;
+  leftLegRealizedRange: number;
+  rightLegRealizedRange: number;
+  handleRealizedRange: number;
+  handleRangeContracts: boolean;
+  pathQualityPassed: boolean;
+}
+
+const getSegmentCandles = (
+  state: Pick<EngineState, "candles" | "candleStartIndex">,
+  startIndex: number,
+  endIndex: number,
+): Candle[] | null => {
+  const candles: Candle[] = [];
+  for (let index = startIndex; index <= endIndex; index += 1) {
+    const candle = getBufferedCandle(state, index);
+    if (!candle) return null;
+    candles.push(candle);
+  }
+  return candles;
+};
+
+const calculateProgressRatio = (
+  candles: Candle[],
+  expectedDirection: 1 | -1,
+) => {
+  let progressingMoves = 0;
+  let comparableMoves = 0;
+  for (let index = 1; index < candles.length; index += 1) {
+    const previousClose = asNumber(candles[index - 1]?.close);
+    const close = asNumber(candles[index]?.close);
+    if (previousClose == null || close == null) continue;
+    comparableMoves += 1;
+    if ((close - previousClose) * expectedDirection > 0) {
+      progressingMoves += 1;
+    }
+  }
+  return comparableMoves > 0 ? progressingMoves / comparableMoves : 0;
+};
+
+const calculateRealizedRange = (candles: Candle[]) => {
+  const highs = candles
+    .map((candle) => asNumber(candle.high))
+    .filter((value): value is number => value != null);
+  const lows = candles
+    .map((candle) => asNumber(candle.low))
+    .filter((value): value is number => value != null);
+  if (highs.length !== candles.length || lows.length !== candles.length) {
+    return 0;
+  }
+  return Math.max(...highs) - Math.min(...lows);
+};
+
+const buildPathQuality = ({
+  state,
+  direction,
+  leftRim,
+  cupExtreme,
+  rightRim,
+  handleExtreme,
+}: {
+  state: Pick<EngineState, "candles" | "candleStartIndex">;
+  direction: Direction;
+  leftRim: CupAndHandlePivot;
+  cupExtreme: CupAndHandlePivot;
+  rightRim: CupAndHandlePivot;
+  handleExtreme: CupAndHandlePivot;
+}): CupAndHandlePathQuality | null => {
+  const leftLeg = getSegmentCandles(state, leftRim.index, cupExtreme.index);
+  const rightLeg = getSegmentCandles(state, cupExtreme.index, rightRim.index);
+  const handle = getSegmentCandles(state, rightRim.index, handleExtreme.index);
+  if (!leftLeg || !rightLeg || !handle) return null;
+
+  const leftLegProgressRatio = calculateProgressRatio(
+    leftLeg,
+    direction === "LONG" ? -1 : 1,
+  );
+  const rightLegProgressRatio = calculateProgressRatio(
+    rightLeg,
+    direction === "LONG" ? 1 : -1,
+  );
+  const leftLegRealizedRange = calculateRealizedRange(leftLeg);
+  const rightLegRealizedRange = calculateRealizedRange(rightLeg);
+  const handleRealizedRange = calculateRealizedRange(handle);
+  const handleRangeContracts =
+    handleRealizedRange > 0 &&
+    handleRealizedRange < leftLegRealizedRange &&
+    handleRealizedRange < rightLegRealizedRange;
+  const pathQualityPassed =
+    leftLegProgressRatio > 0.5 && rightLegProgressRatio > 0.5;
+
+  return {
+    leftLegProgressRatio,
+    rightLegProgressRatio,
+    leftLegRealizedRange,
+    rightLegRealizedRange,
+    handleRealizedRange,
+    handleRangeContracts,
+    pathQualityPassed,
+  };
 };
 
 const resolveConfirmedPivot = ({
@@ -432,6 +544,26 @@ const buildBreakoutPattern = ({
     return null;
   }
 
+  const pathQuality = buildPathQuality({
+    state,
+    direction,
+    leftRim,
+    cupExtreme,
+    rightRim,
+    handleExtreme,
+  }) ?? {
+    leftLegProgressRatio: 0,
+    rightLegProgressRatio: 0,
+    leftLegRealizedRange: 0,
+    rightLegRealizedRange: 0,
+    handleRealizedRange: 0,
+    handleRangeContracts: false,
+    pathQualityPassed: false,
+  };
+  if (options.requirePathQuality && !pathQuality.pathQualityPassed) {
+    return null;
+  }
+
   const breakoutDistance = Math.abs(close - neckline);
   const breakoutDistancePct =
     neckline !== 0 ? (breakoutDistance / Math.abs(neckline)) * 100 : 0;
@@ -491,6 +623,7 @@ const buildBreakoutPattern = ({
     breakoutDistanceAtr,
     breakoutDistanceDepthRatio,
     breakoutCrossedOnSignalBar,
+    ...pathQuality,
     breakoutTimestamp: candle.timestamp,
     confirmationBars: 0,
     timestamp: candle.timestamp,
@@ -594,6 +727,13 @@ export const buildCupAndHandleSignalContext = (
   breakoutDistanceAtr: pattern.breakoutDistanceAtr,
   breakoutDistanceDepthRatio: pattern.breakoutDistanceDepthRatio,
   breakoutCrossedOnSignalBar: pattern.breakoutCrossedOnSignalBar,
+  leftLegProgressRatio: pattern.leftLegProgressRatio,
+  rightLegProgressRatio: pattern.rightLegProgressRatio,
+  leftLegRealizedRange: pattern.leftLegRealizedRange,
+  rightLegRealizedRange: pattern.rightLegRealizedRange,
+  handleRealizedRange: pattern.handleRealizedRange,
+  handleRangeContracts: pattern.handleRangeContracts,
+  pathQualityPassed: pattern.pathQualityPassed,
   breakoutTimestamp: pattern.breakoutTimestamp,
   confirmationBars: pattern.confirmationBars,
   currentPrice: pattern.close,
@@ -646,6 +786,7 @@ export const createCupAndHandleEngine = ({
     const maxCandles = Math.max(
       options.pivotLookback * 2 + 1,
       options.atrPeriod + 1,
+      options.maxPatternAgeBars + options.pivotLookback * 2 + 1,
     );
     const currentIndex = pushBoundedCandle(state, candle, maxCandles);
     const atr = calculateAtr(state.candles, options.atrPeriod);

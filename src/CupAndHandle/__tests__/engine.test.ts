@@ -80,6 +80,7 @@ describe("CupAndHandle engine", () => {
     expect(pattern?.stopLossPrice).toBeLessThan(96);
     expect(pattern?.handleDepthRatio).toBeLessThan(0.6);
     expect(pattern?.breakoutCrossedOnSignalBar).toBe(true);
+    expect(pattern?.pathQualityPassed).toBe(true);
   });
 
   it("detects an inverted cup-and-handle neckline breakdown", () => {
@@ -94,6 +95,42 @@ describe("CupAndHandle engine", () => {
     expect(pattern?.neckline).toBe(90);
     expect(pattern?.targetPrice).toBeLessThan(90);
     expect(pattern?.stopLossPrice).toBeGreaterThan(104);
+    expect(pattern?.pathQualityPassed).toBe(true);
+  });
+
+  it("rejects a noisy cup path when categorical path quality is required", () => {
+    const candles = makeCupAndHandleCandles();
+    candles[1] = makeCandle(1, 100, 110, 100, 100);
+    candles[2] = makeCandle(2, 104, 106, 96, 105);
+    const engine = createCupAndHandleEngine({
+      config: makeConfig({ CUPHANDLE_REQUIRE_PATH_QUALITY: true }),
+    });
+
+    const state = candles.reduce(
+      (_, candle) => engine.next(candle as any),
+      engine.getState(),
+    );
+
+    expect(state.pattern).toBeNull();
+    expect(
+      engine.next(makeCandle(10, 112, 114, 111, 113) as any).pattern,
+    ).toBeNull();
+  });
+
+  it("preserves the same noisy four-pivot geometry when path quality is disabled", () => {
+    const candles = makeCupAndHandleCandles();
+    candles[1] = makeCandle(1, 100, 110, 100, 100);
+    candles[2] = makeCandle(2, 104, 106, 96, 105);
+    const engine = createCupAndHandleEngine({ config: makeConfig() });
+
+    const state = candles.reduce(
+      (_, candle) => engine.next(candle as any),
+      engine.getState(),
+    );
+
+    expect(state.pattern?.kind).toBe("cup_and_handle");
+    expect(state.pattern?.leftLegProgressRatio).toBe(0.5);
+    expect(state.pattern?.pathQualityPassed).toBe(false);
   });
 
   it("rejects a handle that retraces too deeply into the cup", () => {
@@ -156,7 +193,10 @@ describe("CupAndHandle engine", () => {
   });
 
   it("rebuilds pending state identically from initial candles", () => {
-    const config = makeConfig({ CUPHANDLE_ENTRY_MODE: "close_acceptance" });
+    const config = makeConfig({
+      CUPHANDLE_ENTRY_MODE: "close_acceptance",
+      CUPHANDLE_REQUIRE_PATH_QUALITY: true,
+    });
     const history = makeCupAndHandleCandles();
     const confirmation = makeCandle(10, 112, 114, 110.5, 113);
     const continuous = createCupAndHandleEngine({ config });

@@ -1,4 +1,8 @@
 import { mapAiRuntimeFromConfig } from "@tradejs/core/strategies";
+import {
+  getAiPayloadNumber,
+  withStrategyLocalAiGate,
+} from "@tradejs/strategy-kit/ai-gate";
 import type { AiPayload, StrategyAiAdapter } from "@tradejs/types";
 import type { CupAndHandleConfig } from "../config";
 import type { CupAndHandleSignalContext } from "../engine";
@@ -13,7 +17,7 @@ const getContext = (payload: AiPayload) =>
     asRecord(payload.additionalIndicators).cupAndHandleContext,
   ) as Partial<CupAndHandleSignalContext>;
 
-export const cupAndHandleAiAdapter: StrategyAiAdapter = {
+const cupAndHandleBaseAiAdapter: StrategyAiAdapter = {
   buildPayload: ({ signal, basePayload }) => ({
     ...basePayload,
     additionalIndicators: {
@@ -56,3 +60,26 @@ Interpretation rules for CupAndHandle:
       >,
     ),
 };
+
+export const cupAndHandleAiAdapter = withStrategyLocalAiGate(
+  cupAndHandleBaseAiAdapter,
+  {
+    id: "cup_and_handle_causal_cup_progress_own_gate_2_2026_08_25",
+    approves: ({ payload }) => {
+      const resistanceHitCount = getAiPayloadNumber(
+        payload,
+        "additionalIndicators.baseContext.structure.liquidityZones.nearestResistance.hitCount",
+      );
+      const betaToEth20 = getAiPayloadNumber(
+        payload,
+        "additionalIndicators.baseContext.relative.targetVsEth.betaToEth20",
+      );
+      return (
+        resistanceHitCount != null &&
+        resistanceHitCount >= 19 &&
+        betaToEth20 != null &&
+        betaToEth20 >= 0
+      );
+    },
+  },
+);

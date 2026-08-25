@@ -48,6 +48,7 @@ const buildCupAndHandleStateKey = (config: CupAndHandleConfig) =>
       config.CUPHANDLE_MAX_BREAKOUT_DISTANCE_DEPTH_RATIO,
     maxBreakoutDistancePct: config.CUPHANDLE_MAX_BREAKOUT_DISTANCE_PCT,
     requireBreakoutCross: config.CUPHANDLE_REQUIRE_BREAKOUT_CROSS,
+    requirePathQuality: config.CUPHANDLE_REQUIRE_PATH_QUALITY,
     entryMode: config.CUPHANDLE_ENTRY_MODE,
     confirmationMaxBars: config.CUPHANDLE_CONFIRMATION_MAX_BARS,
     retestMaxBars: config.CUPHANDLE_RETEST_MAX_BARS,
