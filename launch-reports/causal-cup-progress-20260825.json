@@ -1,0 +1,24 @@
+{
+  "schema": "tradejs-launch-report/v1",
+  "strategy": "CupAndHandle",
+  "candidate": "Cup progress with own gate 2",
+  "sourceSha256": "ed60336911812f105b3fb5ba2bd1b91a43c43469ed0017ba1acd529188d82b4c",
+  "metrics": {
+    "trades": 96,
+    "pnl": 126.73000000000002,
+    "maxDrawdown": 42.56,
+    "maxLossStreak": 4,
+    "profitFactor": 1.3168250000000004,
+    "winRatePercent": 58.333333333333336,
+    "maxDrawdownDurationDays": 385.1458333333333
+  },
+  "researchRiskUsdt": 10,
+  "period": {
+    "start": 1691647200000,
+    "end": 1787492700000
+  },
+  "chart": {
+    "caption": "Historical cumulative P&L and drawdown from peak, in USDT.",
+    "sha256": "652b13e39266dd0bde97ee5a28ec9122c723f7a376ce3eaa3838a0a8cba192a5"
+  }
+}
