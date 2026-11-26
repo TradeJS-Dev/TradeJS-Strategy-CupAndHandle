@@ -1,6 +1,10 @@
 # @tradejs/strategy-cup-and-handle
 
-TradeJS strategy plugin providing `CupAndHandle`.
+CupAndHandle watches for a break after price forms a rounded cup and a shorter
+pullback called the handle. It also looks for the upside-down version of the
+pattern.
+
+[See examples and configuration in the TradeJS Marketplace](https://tradejs.dev/marketplace/cup-and-handle).
 
 ## Strategy overview
 

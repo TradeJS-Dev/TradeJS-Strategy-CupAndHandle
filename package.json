@@ -1,7 +1,7 @@
 {
   "name": "@tradejs/strategy-cup-and-handle",
   "version": "3.0.7",
-  "description": "Cup-and-handle and inverse-pattern strategy with pivot geometry, breakout confirmation, retests, and structural risk for TradeJS.",
+  "description": "CupAndHandle watches for a break after price forms a rounded cup and a shorter pullback called the handle.",
   "type": "module",
   "packageManager": "yarn@4.13.0",
   "engines": {
