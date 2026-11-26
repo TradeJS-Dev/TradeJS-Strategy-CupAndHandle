@@ -1,6 +1,6 @@
 {
   "name": "@tradejs/strategy-cup-and-handle",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "CupAndHandle watches for a break after price forms a rounded cup and a shorter pullback called the handle.",
   "type": "module",
   "packageManager": "yarn@4.13.0",
